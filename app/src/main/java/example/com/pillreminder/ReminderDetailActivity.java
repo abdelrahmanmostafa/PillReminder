@@ -1,10 +1,14 @@
 package example.com.pillreminder;
 
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -15,6 +19,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
@@ -23,9 +28,11 @@ import java.util.Locale;
 
 public class ReminderDetailActivity extends AppCompatActivity implements OnClickListener {
 
+    public PendingIntent pendingIntent;
     private Button settingDate;
     public Button settingTime;
     public EditText medicineName;
+    public TextView test;
 
     private DatePickerDialog datePickerDialog;
 
@@ -153,7 +160,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
             datePickerDialog.show();
         }
 
-         }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -173,6 +180,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
             }
             case R.id.action_save_reminder:
                 updateReminders();
+                //finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -187,5 +195,46 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
         model.day=day;
         model.hour=hour;
         model.minute=minute;
+        createReminder(model);
+
     }
+    public void createReminder(ReminderModel myModel)
+    {
+
+        test = (TextView)findViewById(R.id.testButton);
+
+
+         int  id =0;
+
+        /* Retrieve a PendingIntent that will perform a broadcast */
+
+        Intent alarmIntent = new Intent(ReminderDetailActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(ReminderDetailActivity.this,0, alarmIntent, 0);
+
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        int interval = 1000 * 60 *1;
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        calendar.set(Calendar.YEAR, myModel.year);
+        calendar.set(Calendar.MONTH,myModel.month);
+        calendar.set(Calendar.DAY_OF_MONTH,myModel.day);
+
+        calendar.set(Calendar.HOUR_OF_DAY,myModel.hour);
+        calendar.set(Calendar.MINUTE,myModel.minute);
+        calendar.set(Calendar.SECOND, 0);
+
+        /* Repeating on  each  interval */
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                interval, pendingIntent);
+
+        test.setText(myModel.drugName + " " + Integer.toString(myModel.year) + " " + Integer.toString(myModel.month) + " "
+                + Integer.toString(myModel.day) + " " + Integer.toString(myModel.hour) + " " + Integer.toString(myModel.minute));
+
+
+    }
+
 }

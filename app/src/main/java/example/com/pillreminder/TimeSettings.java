@@ -1,11 +1,14 @@
 package example.com.pillreminder;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class TimeSettings implements TimePickerDialog.OnTimeSetListener{
+
+
 
     Context context;
     int  selectedHour;
@@ -19,7 +22,6 @@ public class TimeSettings implements TimePickerDialog.OnTimeSetListener{
         Toast.makeText(context, "Selected time is hour:" + hourOfDay + "minute:" + minute, Toast.LENGTH_LONG).show();
         selectedHour=hourOfDay;
         selectedMinute=minute;
-
     }
 
 }
