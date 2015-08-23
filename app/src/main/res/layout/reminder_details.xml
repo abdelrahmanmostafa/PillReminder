@@ -1,0 +1,133 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:isScrollContainer="true" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        tools:context=".AlarmDetailActivity" >
+
+        <TextView
+            android:id="@+id/drugName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Drug Name"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <EditText
+            android:id="@+id/reminder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Medication Name"
+            android:layout_below="@+id/drugName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <View
+            android:id="@+id/divider2"
+            style="@style/Divider"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/reminder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <View
+            android:id="@+id/divider3"
+            style="@style/Divider"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/reminder_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/ReminderFrequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/divider2"
+            android:text="Frequency"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_blue_light" />
+
+        <Button
+            android:id="@+id/frequencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ReminderFrequency"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="110dp"
+            android:text="Set Frequency"/>
+
+        <View
+            android:id="@+id/divider4"
+            style="@style/Divider"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/frequencyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/StartDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/divider4"
+            android:text="Start Date"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_blue_light" />
+        <Button
+            android:id="@+id/startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/StartDateTextView"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="110dp"
+            android:text="dd/mm/yyyy"
+            />
+
+        <View
+            android:id="@+id/divider5"
+            style="@style/Divider"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/StartTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/divider5"
+            android:text="Start Time"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_blue_light"
+            android:onClick="settingDateButtonClicked" />
+
+        <Button
+            android:id="@+id/startTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/StartTimeTextView"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="110dp"
+            android:text="   7:00  PM"
+            android:onClick="settingTimeButtonClicked" />
+
+    </RelativeLayout>
+
+</ScrollView>

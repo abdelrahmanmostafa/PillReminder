@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Pillify</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_reminder_detail">ReminderDetailActivity</string>
+    <string name="details_reminder_name">Alarm Name</string>
+    <string name="details_reminder_tone">reminder Tone</string>
+    <string name="details_reminder_tone_default">Select an reminder tone</string>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pillreminder="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="addIcon"
+        android:id="@+id/action_save_reminder"
+        android:icon="@drawable/save_icon"
+        pillreminder:showAsAction="always" />
+
+</menu>
