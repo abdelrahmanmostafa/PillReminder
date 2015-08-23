@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -22,8 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // For our recurring task, we'll just display a message
         sendNotification(context, intent);
-
-        // Toast.makeText(context, "I'm running", Toast.LENGTH_SHORT).show();
+         //Toast.makeText(context, "I'm running", Toast.LENGTH_SHORT).show();
     }
 
     public void sendNotification(Context context, Intent intent) {

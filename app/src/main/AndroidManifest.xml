@@ -20,6 +20,9 @@
             android:name=".ReminderDetailActivity"
             android:label="@string/title_activity_reminder_detail" >
         </activity>
+
+        <receiver android:name="AlarmReceiver">
+        </receiver>
     </application>
 
 </manifest>

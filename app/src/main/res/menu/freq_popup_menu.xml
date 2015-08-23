@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/once" android:title="Once a day"></item>
+        <item android:id="@+id/twoTimes" android:title="every 12 hours"></item>
+        <item android:id="@+id/threeTimes" android:title="every 8 hours"></item>
+        <item android:id="@+id/fourTimes" android:title="every 6 hours"></item>
+
+    </group>
+
+</menu>

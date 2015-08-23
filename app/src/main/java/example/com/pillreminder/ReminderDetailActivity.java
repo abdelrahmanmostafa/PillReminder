@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +47,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
     private int day;
 
     static final int TIME_DIALOG_ID = 0;
+    int item_selection=0;
 
 
     @Override
@@ -64,6 +68,66 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
         addButtonListener();
     }
 
+// for frequency popup menu
+
+public void frequencyButtonClicked(View view){
+    registerForContextMenu(view);
+    openContextMenu(view);
+
+}
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.freq_popup_menu,menu);
+        MenuItem item_once= menu.findItem(R.id.once);
+        MenuItem item_twoTimes= menu.findItem(R.id.twoTimes);
+        MenuItem item_threeTimes= menu.findItem(R.id.threeTimes);
+        MenuItem item_fourTimes= menu.findItem(R.id.threeTimes);
+
+        if (item_selection==1){
+            item_once.setChecked(true);
+        }
+        if (item_selection==2){
+            item_twoTimes.setChecked(true);
+        }
+        if (item_selection==3){
+            item_threeTimes.setChecked(true);
+        }
+        if (item_selection==4){
+            item_fourTimes.setChecked(true);
+        }
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.once:
+                //Toast.makeText(getApplicationContext(), "once is selected", Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                item_selection=1;
+                return true;
+            case R.id.twoTimes:
+                //Toast.makeText(getApplicationContext(),"two times is selected",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                item_selection=2;
+                return true;
+            case R.id.threeTimes:
+                //Toast.makeText(getApplicationContext(),"three times is selected",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                item_selection=3;
+                return true;
+            case R.id.fourTimes:
+                //Toast.makeText(getApplicationContext(),"three times is selected",Toast.LENGTH_SHORT).show();
+                item.setChecked(true);
+                item_selection=4;
+                return true;
+
+        }
+        return super.onContextItemSelected(item);
+    }
 
     private void findViewsById() {
         settingDate = (Button) findViewById(R.id.startingDate);
@@ -180,7 +244,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
             }
             case R.id.action_save_reminder:
                 updateReminders();
-                //finish();
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -195,26 +259,42 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
         model.day=day;
         model.hour=hour;
         model.minute=minute;
+        model.interval_id=item_selection;
         createReminder(model);
 
     }
+
     public void createReminder(ReminderModel myModel)
+
     {
 
         test = (TextView)findViewById(R.id.testButton);
-
 
          int  id =0;
 
         /* Retrieve a PendingIntent that will perform a broadcast */
 
         Intent alarmIntent = new Intent(ReminderDetailActivity.this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(ReminderDetailActivity.this,0, alarmIntent, 0);
+
+        pendingIntent = PendingIntent.getBroadcast(ReminderDetailActivity.this,++id, alarmIntent, 0);
 
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        int interval = 1000 * 60 *1;
+        switch (myModel.interval_id)
+        {
+            case 1:
+                // update interval
+            case 2:
+                // update interval
+            case 3:
+                //update interval
+            case 4:
+                //update interval
 
+        }
+
+
+        int interval = 1000 * 60 *2;
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -222,7 +302,6 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
         calendar.set(Calendar.YEAR, myModel.year);
         calendar.set(Calendar.MONTH,myModel.month);
         calendar.set(Calendar.DAY_OF_MONTH,myModel.day);
-
         calendar.set(Calendar.HOUR_OF_DAY,myModel.hour);
         calendar.set(Calendar.MINUTE,myModel.minute);
         calendar.set(Calendar.SECOND, 0);
@@ -233,7 +312,6 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
 
         test.setText(myModel.drugName + " " + Integer.toString(myModel.year) + " " + Integer.toString(myModel.month) + " "
                 + Integer.toString(myModel.day) + " " + Integer.toString(myModel.hour) + " " + Integer.toString(myModel.minute));
-
 
     }
 

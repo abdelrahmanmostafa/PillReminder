@@ -67,7 +67,8 @@
             android:layout_below="@id/ReminderFrequency"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="110dp"
-            android:text="Set Frequency"/>
+            android:text="Set Frequency"
+            android:onClick="frequencyButtonClicked"/>
 
         <View
             android:id="@+id/divider4"

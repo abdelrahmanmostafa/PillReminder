@@ -11,7 +11,7 @@ public class ReminderModel {
     public int year ;
     public int month ;
     public int day ;
-
+    public int interval_id;
 
     public String startingDate;
     public String dosage;
