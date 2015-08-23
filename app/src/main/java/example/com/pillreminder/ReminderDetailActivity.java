@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -60,7 +59,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
 
 
     private void findViewsById() {
-        settingDate = (Button) findViewById(R.id.startDate);
+        settingDate = (Button) findViewById(R.id.startingDate);
         settingDate.setInputType(InputType.TYPE_NULL);
         //settingDate.requestFocus();
     }
@@ -86,7 +85,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
     }
     public void setCurrentTimeOnView() {
 
-        settingTime= (Button) findViewById(R.id.startTime);
+        settingTime= (Button) findViewById(R.id.startingTime);
 
         final Calendar c = Calendar.getInstance();
         hour = c.get(Calendar.HOUR_OF_DAY);
@@ -102,7 +101,7 @@ public class ReminderDetailActivity extends AppCompatActivity implements OnClick
 
     public void addButtonListener() {
 
-        settingTime = (Button) findViewById(R.id.startTime);
+        settingTime = (Button) findViewById(R.id.startingTime);
 
         settingTime.setOnClickListener(new OnClickListener() {
 
